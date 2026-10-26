@@ -99,15 +99,16 @@ class BarRenderer
 		thresholdFlashStartTick = UNSET_TICK;
 	}
 
-	void renderBar(MoreStatusBarsConfig config, Graphics2D graphics, int x, int y, int width, int height)
+	void renderBar(MoreStatusBarsConfig config, Graphics2D graphics, int x, int y, int width, int height, int opacity)
 	{
 		refreshSkills();
 		updateThresholdFlash(config);
+		opacity = Math.max(0, Math.min(100, opacity));
 
 		final int filledHeight = getBarHeight(maxValue, currentValue, height);
-		final Color fill = colorSupplier.get();
+		final Color fill = withOpacity(colorSupplier.get(), opacity);
 
-		graphics.setColor(config.backgroundColor());
+		graphics.setColor(withOpacity(config.backgroundColor(), opacity));
 		graphics.drawRect(x, y, width - BORDER_SIZE, height - BORDER_SIZE);
 		graphics.fillRect(x, y, width, height);
 
@@ -121,12 +122,12 @@ class BarRenderer
 
 		if (config.enableRestorationBars())
 		{
-			renderRestore(config, graphics, x, y, width, height);
+			renderRestore(config, graphics, x, y, width, height, opacity);
 		}
 
 		if (isThresholdFlashActive(config))
 		{
-			graphics.setColor(config.thresholdFlashColor());
+			graphics.setColor(withOpacity(config.thresholdFlashColor(), opacity));
 			graphics.fillRect(x, y, width, height);
 		}
 
@@ -206,7 +207,7 @@ class BarRenderer
 		return flashDuration == null ? 0 : flashDuration.getTicks();
 	}
 
-	private void renderRestore(MoreStatusBarsConfig config, Graphics2D graphics, int x, int y, int width, int height)
+	private void renderRestore(MoreStatusBarsConfig config, Graphics2D graphics, int x, int y, int width, int height, int opacity)
 	{
 		final int heal = healSupplier.get();
 		if (heal <= 0)
@@ -228,13 +229,13 @@ class BarRenderer
 
 		if (filledHealHeight + filledCurrentHeight > height)
 		{
-			graphics.setColor(config.overhealColor());
+			graphics.setColor(withOpacity(config.overhealColor(), opacity));
 			fillY = y + BORDER_SIZE;
 			fillHeight = height - filledCurrentHeight - BORDER_SIZE;
 		}
 		else
 		{
-			graphics.setColor(color);
+			graphics.setColor(withOpacity(color, opacity));
 			fillY = y + BORDER_SIZE + height - (filledCurrentHeight + filledHealHeight);
 			fillHeight = filledHealHeight;
 		}
@@ -245,6 +246,16 @@ class BarRenderer
 			width - BORDER_SIZE * 2,
 			fillHeight
 		);
+	}
+
+	private static Color withOpacity(Color color, int percent)
+	{
+		if (percent == 100)
+		{
+			return color;
+		}
+
+		return new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() * percent / 100);
 	}
 
 	private static int getBarHeight(int base, int current, int size)

@@ -50,6 +50,14 @@ public interface MoreStatusBarsConfig extends Config
 	String colorsSection = "colors";
 
 	@ConfigSection(
+		name = "Opacity",
+		description = "Configures opacity for each bar without fading icons or counters.",
+		position = 150,
+		closedByDefault = true
+	)
+	String opacitySection = "opacity";
+
+	@ConfigSection(
 		name = "Warning flashes",
 		description = "Configures status bar warning flashes.",
 		position = 200,
@@ -174,6 +182,62 @@ public interface MoreStatusBarsConfig extends Config
 	default int modernBarGap()
 	{
 		return 1;
+	}
+
+	@Range(min = 0, max = 100)
+	@Units(Units.PERCENT)
+	@ConfigItem(
+		keyName = "leftBarOpacity",
+		name = "Bar #1 opacity",
+		description = "Opacity of the primary left bar's background, fill, restores, and flashes (100% = configured colors).",
+		position = 0,
+		section = opacitySection
+	)
+	default int leftBarOpacity()
+	{
+		return 100;
+	}
+
+	@Range(min = 0, max = 100)
+	@Units(Units.PERCENT)
+	@ConfigItem(
+		keyName = "rightBarOpacity",
+		name = "Bar #2 opacity",
+		description = "Opacity of the primary right bar's background, fill, restores, and flashes (100% = configured colors).",
+		position = 1,
+		section = opacitySection
+	)
+	default int rightBarOpacity()
+	{
+		return 100;
+	}
+
+	@Range(min = 0, max = 100)
+	@Units(Units.PERCENT)
+	@ConfigItem(
+		keyName = "leftSecondaryBarOpacity",
+		name = "Bar #3 opacity",
+		description = "Opacity of the secondary left bar's background, fill, restores, and flashes (100% = configured colors).",
+		position = 2,
+		section = opacitySection
+	)
+	default int leftSecondaryBarOpacity()
+	{
+		return 100;
+	}
+
+	@Range(min = 0, max = 100)
+	@Units(Units.PERCENT)
+	@ConfigItem(
+		keyName = "rightSecondaryBarOpacity",
+		name = "Bar #4 opacity",
+		description = "Opacity of the secondary right bar's background, fill, restores, and flashes (100% = configured colors).",
+		position = 3,
+		section = opacitySection
+	)
+	default int rightSecondaryBarOpacity()
+	{
+		return 100;
 	}
 
 	@Alpha

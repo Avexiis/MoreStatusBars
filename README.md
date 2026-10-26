@@ -15,6 +15,7 @@ More Status Bars enhances the default Status Bars plugin by letting you display 
   - Warmth
 - Other Features
   - Recolor each bar and its status type(s) individually
+  - Adjust opacity from 0% to 100% for each of the four bar slots.
   - Set status thresholds to make the bars flash when that number is reached
 
 ---

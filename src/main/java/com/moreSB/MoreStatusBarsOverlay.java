@@ -353,19 +353,19 @@ class MoreStatusBarsOverlay extends Overlay
 		{
 			if (leftPrimary != null)
 			{
-				leftPrimary.renderBar(config, g, leftX, leftY, width, height);
+				leftPrimary.renderBar(config, g, leftX, leftY, width, height, config.leftBarOpacity());
 			}
 			else
 			{
-				leftSecondary.renderBar(config, g, leftX, leftY, width, height);
+				leftSecondary.renderBar(config, g, leftX, leftY, width, height, config.leftSecondaryBarOpacity());
 			}
 		}
 		else if (leftCount == 2)
 		{
 			final int halfHeight = height / 2;
 
-			leftPrimary.renderBar(config, g, leftX, leftY, width, halfHeight);
-			leftSecondary.renderBar(config, g, leftX, leftY + halfHeight, width, height - halfHeight);
+			leftPrimary.renderBar(config, g, leftX, leftY, width, halfHeight, config.leftBarOpacity());
+			leftSecondary.renderBar(config, g, leftX, leftY + halfHeight, width, height - halfHeight, config.leftSecondaryBarOpacity());
 		}
 
 		final int rightCount = (rightPrimary != null ? 1 : 0) + (rightSecondary != null ? 1 : 0);
@@ -373,19 +373,19 @@ class MoreStatusBarsOverlay extends Overlay
 		{
 			if (rightPrimary != null)
 			{
-				rightPrimary.renderBar(config, g, rightX, rightY, width, height);
+				rightPrimary.renderBar(config, g, rightX, rightY, width, height, config.rightBarOpacity());
 			}
 			else
 			{
-				rightSecondary.renderBar(config, g, rightX, rightY, width, height);
+				rightSecondary.renderBar(config, g, rightX, rightY, width, height, config.rightSecondaryBarOpacity());
 			}
 		}
 		else if (rightCount == 2)
 		{
 			final int halfHeight = height / 2;
 
-			rightPrimary.renderBar(config, g, rightX, rightY, width, halfHeight);
-			rightSecondary.renderBar(config, g, rightX, rightY + halfHeight, width, height - halfHeight);
+			rightPrimary.renderBar(config, g, rightX, rightY, width, halfHeight, config.rightBarOpacity());
+			rightSecondary.renderBar(config, g, rightX, rightY + halfHeight, width, height - halfHeight, config.rightSecondaryBarOpacity());
 		}
 	}
 
@@ -415,19 +415,19 @@ class MoreStatusBarsOverlay extends Overlay
 		{
 			if (leftPrimary != null)
 			{
-				leftPrimary.renderBar(config, g, leftStackX, leftY, width, height);
+				leftPrimary.renderBar(config, g, leftStackX, leftY, width, height, config.leftBarOpacity());
 			}
 			else
 			{
-				leftSecondary.renderBar(config, g, leftStackX, leftY, width, height);
+				leftSecondary.renderBar(config, g, leftStackX, leftY, width, height, config.leftSecondaryBarOpacity());
 			}
 		}
 		else if (leftCount == 2)
 		{
 			final int halfHeight = height / 2;
 
-			leftPrimary.renderBar(config, g, leftStackX, leftY, width, halfHeight);
-			leftSecondary.renderBar(config, g, leftStackX, leftY + halfHeight, width, height - halfHeight);
+			leftPrimary.renderBar(config, g, leftStackX, leftY, width, halfHeight, config.leftBarOpacity());
+			leftSecondary.renderBar(config, g, leftStackX, leftY + halfHeight, width, height - halfHeight, config.leftSecondaryBarOpacity());
 		}
 
 		final int rightCount = (rightPrimary != null ? 1 : 0) + (rightSecondary != null ? 1 : 0);
@@ -435,19 +435,19 @@ class MoreStatusBarsOverlay extends Overlay
 		{
 			if (rightPrimary != null)
 			{
-				rightPrimary.renderBar(config, g, rightStackX, rightY, width, height);
+				rightPrimary.renderBar(config, g, rightStackX, rightY, width, height, config.rightBarOpacity());
 			}
 			else
 			{
-				rightSecondary.renderBar(config, g, rightStackX, rightY, width, height);
+				rightSecondary.renderBar(config, g, rightStackX, rightY, width, height, config.rightSecondaryBarOpacity());
 			}
 		}
 		else if (rightCount == 2)
 		{
 			final int halfHeight = height / 2;
 
-			rightPrimary.renderBar(config, g, rightStackX, rightY, width, halfHeight);
-			rightSecondary.renderBar(config, g, rightStackX, rightY + halfHeight, width, height - halfHeight);
+			rightPrimary.renderBar(config, g, rightStackX, rightY, width, halfHeight, config.rightBarOpacity());
+			rightSecondary.renderBar(config, g, rightStackX, rightY + halfHeight, width, height - halfHeight, config.rightSecondaryBarOpacity());
 		}
 	}
 
@@ -470,25 +470,25 @@ class MoreStatusBarsOverlay extends Overlay
 
 		if (rightPrimary != null)
 		{
-			rightPrimary.renderBar(config, g, x, rightY, width, height);
+			rightPrimary.renderBar(config, g, x, rightY, width, height, config.rightBarOpacity());
 			x -= step;
 		}
 
 		if (rightSecondary != null)
 		{
-			rightSecondary.renderBar(config, g, x, rightY, width, height);
+			rightSecondary.renderBar(config, g, x, rightY, width, height, config.rightSecondaryBarOpacity());
 			x -= step;
 		}
 
 		if (leftPrimary != null)
 		{
-			leftPrimary.renderBar(config, g, x, rightY, width, height);
+			leftPrimary.renderBar(config, g, x, rightY, width, height, config.leftBarOpacity());
 			x -= step;
 		}
 
 		if (leftSecondary != null)
 		{
-			leftSecondary.renderBar(config, g, x, rightY, width, height);
+			leftSecondary.renderBar(config, g, x, rightY, width, height, config.leftSecondaryBarOpacity());
 		}
 	}
 
